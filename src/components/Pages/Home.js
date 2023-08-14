@@ -10,13 +10,13 @@ import GlaxyUltra from "./GlaxyUltra";
 
 
 
-export const Home = () => {
+export const Home = ({cartItems, setCartItems,searchTerm}) => {
   return (
     <div className="image-grid">
       <h4>Result</h4>
   
       <div className="grid">
-        <GlaxyUltra />
+        <GlaxyUltra cartItems={cartItems} setCartItems={setCartItems} searchTerm={searchTerm}/>
       </div>
     </div>
   );

@@ -5,8 +5,7 @@ import Stars from "../images/starts.png";
 import Stars2 from "../images/stars1.png";
 import { data } from "../data";
 
-const GlaxyUltra = () => {
-	const [cartItems, setCartItems] = useState([]);
+const GlaxyUltra = ({ setCartItems, searchTerm }) => {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 	const mobileBreakpoint = 768;
 
@@ -24,11 +23,18 @@ const GlaxyUltra = () => {
 
 	const addToCart = (item) => {
 		setCartItems((prevCartItems) => [...prevCartItems, item]);
-	  };
+		console.log(item, "itemmmm2222")
+	};
+
+	const filteredData = data.filter((item) =>
+		item.mobileName.toLowerCase().includes(searchTerm.toLowerCase())
+	);
+
+	console.log(searchTerm, "searchhhh")
 
 	return (
 		<Fragment>
-			{data.map((item, index) => {
+			{filteredData.map((item, index) => {
 				if (windowWidth <= mobileBreakpoint && index >= 6) {
 					return null;
 				}
@@ -38,7 +44,10 @@ const GlaxyUltra = () => {
 						<div className={`text-overlay ${item.displaySale ? 'with-background' : 'none'}`}>
 							{item.displaySale && <h4 className="top-left-text">50% off</h4>}
 						</div>
-						<img src={item.image} alt="Image 3" className="mobileImage" />
+						<div className="container-image">
+							<img src={item.image} alt="Image 3" className="mobileImage" />
+						</div>
+
 						<div className="bg-white">
 							<div className="content">
 								<div className="heading">
@@ -50,14 +59,15 @@ const GlaxyUltra = () => {
 							</div>
 							<div className="content">
 								<div className="startssection">
-									{item.ratings.map((item, index) => {
+									{item.ratings.map((index) => {
 										return (
 											<img key={index} src={Stars} alt="Image 1" />
 										)
 									})}
 
 								</div>
-								<Button className="add-to-cart-button" onClick={() => addToCart(item)}  size="small"  >Add to Cart</Button>
+
+								<Button className="add-to-cart-button" onClick={() => addToCart(item)} size="small"  >Add to Cart</Button>
 							</div>
 
 						</div>

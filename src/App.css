@@ -102,6 +102,7 @@ body {
 }
 
 .text-overlay {
+  z-index: 99;
   /* height: 20%; */
   right: 0px;
   position: absolute;
@@ -131,6 +132,8 @@ body {
 
 
 .bg-white {
+  margin-top: 43px;
+  /* padding-top: 33px; */
   height: 100%;
   border-bottom-right-radius: 12px;
   border-bottom-left-radius: 12px;
@@ -138,6 +141,7 @@ body {
   background-color: white;
   padding: 5px;
 }
+
 
 .mainHeading {
   padding: 5px;
@@ -238,8 +242,8 @@ body {
   color: #008ECC;
   right: 0;
   position: absolute;
-  width: 150px;
-  position: absolute;
+  /* width: 150px; */
+ 
 
 }
 
@@ -249,6 +253,33 @@ body {
   margin-right: auto;
   padding-right: 15px;
   padding-left: 15px
+}
+
+.container-image{
+  width: 100%;
+  height: 200px;
+  position: relative;
+}
+
+.container-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-size: cover;
+  /* background-position: center;
+  object-position: center; */
+}
+/* Additional styles for badge */
+.ant-badge-count {
+  background-color: #ff4d4f;
+  color: white;
+  font-size: 12px;
+  min-width: 16px;
+  height: 16px;
+  line-height: 16px;
+  border-radius: 8px;
+  padding: 0 6px;
+  text-align: center;
 }
 
 /* .with-background{
@@ -277,6 +308,7 @@ body {
 }
 
 @media only screen and (min-width:320px) and (max-width:375px) {
+  
   .container {
     padding-left: 0px !important;
   }
@@ -313,6 +345,10 @@ body {
     padding: 30px;
   }
 
+  .cart-logo-wrapper p{
+    margin-top: 16px;
+  }
+
   .image-container {
     width: 400px !important;
   }
@@ -327,7 +363,7 @@ body {
 
   .image-grid {
     padding: 20px;
-    margin-left: 0px;
+    margin-left: 17px !important;
   }
 
   .image-grid h4 {

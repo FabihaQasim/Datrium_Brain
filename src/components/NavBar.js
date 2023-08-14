@@ -4,21 +4,22 @@ import "./NavBar.css";
 import Logo from "../components/images/logo.png";
 import { Row, Col, Input, Badge, Select, Button } from "antd";
 import { Link } from "react-router-dom";
-import { SearchOutlined, DownOutlined, ShoppingCartOutlined  } from "@ant-design/icons";
+import { SearchOutlined, DownOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import Search from "../components/images/search.png"
 import Cart from "../components/images/frame.png";
 import Vector from "../components/images/Vector.png"
 
 const { Option } = Select;
 
-function NavBar() {
+function NavBar({ cartItems, setCartItems,searchTerm,setSearchTerm }) {
   const [openCart, setOpenCart] = useState("");
   const [click, setClick] = useState(false);
   const [searchCategory, setSearchCategory] = useState("All");
   const [searchKeyword, setSearchKeyword] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [cartItems, setCartItems] = useState([])
- 
+
+
+
 
   const handleSearch = () => {
     const filteredResults = products.filter((product) => {
@@ -37,7 +38,7 @@ function NavBar() {
   const products = [
     // Your product data here
   ];
-  
+
 
   return (
     <div style={{ backgroundColor: "white" }}>
@@ -54,36 +55,38 @@ function NavBar() {
           </Col>
 
           <Col xl={10} lg={20} md={12} sm={24} xs={24} className="search-bar-container">
-          <div className="parentDiv">
-        <div className="displayFlex">
-          <Select
-            defaultValue="All"
-            className="selectCategory"
-            onChange={(value) => setSearchCategory(value)}
-          >
-            <Option value="All">All</Option>
-          </Select>
-          <input
-            type="text"
-            placeholder="Search Here"
-            className="inputField"
-            value={searchKeyword}
-            onChange={(e) => setSearchKeyword(e.target.value)}
-          />
-          <Button
-            type="primary"
-            icon={<SearchOutlined />}
-            className="searchBar"
-            onClick={handleSearch}
-          />
-        </div>
-      </div>
+            <div className="parentDiv">
+              <div className="displayFlex">
+                <Select
+                  defaultValue="All"
+                  className="selectCategory"
+                  onChange={(value) => setSearchCategory(value)}
+                >
+                  <Option value="All">All</Option>
+                </Select>
+                <input
+                  type="text"
+                  placeholder="Search Here"
+                  className="inputField"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <Button
+                  type="primary"
+                  icon={<SearchOutlined />}
+                  className="searchBar"
+                  onClick={handleSearch}
+                />
+              </div>
+            </div>
           </Col>
 
           <Col xl={6} lg={20} md={6} xs={12} sm={12}>
             <div className="cart-logo-wrapper">
-            <ShoppingCartOutlined className="cart-icon" handleClick={handleClick}/>
-            <p>Cart</p>
+              <Badge count={cartItems.length}>
+                <ShoppingCartOutlined className="cart-icon" />
+              </Badge>
+              <p>Cart</p>
             </div>
           </Col>
 
